@@ -5,6 +5,7 @@ Created on Wed Mar 11 14:17:35 2015
 @author: Michael
 """
 import numpy
+import subprocess
 
 def dotBracketToPairedSites(dotBracket):
     """ convert a dot bracket string to a paired sites list """    
@@ -74,8 +75,8 @@ def calculateNormalizedMountainDistance(pairedSites1, pairedSites2, power, weigh
     mv2 = getMountainVector(pairedSites2,weighted)
     return  getMountainDistance(mv1, mv2, power) / getMountainDiameter(len(pairedSites1), power, weighted)
     
-import subprocess
-def callRNAsuboptWindows(sequence, samples, temperature):
+
+def callRNAsuboptWindows(sequence, num_samples, temperature):
     """ shells to RNAsubopt to stochastically sample structures using the given input sequence and temperature """
     
     infile = "../input.fas"
@@ -86,7 +87,7 @@ def callRNAsuboptWindows(sequence, samples, temperature):
     writer.close()    
     
     binaryPath = "binaries\\RNAsubopt.exe"
-    args = "%s --temp=%f --stochBT=%d < \"%s\"" % (binaryPath, temperature, samples, infile)
+    args = "%s --temp=%f --stochBT=%d < \"%s\"" % (binaryPath, temperature, num_samples, infile)
     #args = "%s --temp=%f --stochBT=%d < \"%s\" > %s" % (binaryPath, temperature, samples, infile, outfile)
     proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE,shell=True)
     out, err = proc.communicate()
