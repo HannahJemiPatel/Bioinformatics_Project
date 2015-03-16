@@ -1,0 +1,442 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\topmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Metrics on RNA secondary structure ensembles
+\end_layout
+
+\begin_layout Author
+Michael Golden, Alain Laederach, Jotun Hein
+\end_layout
+
+\begin_layout Standard
+RNA secondary structure is defined as the set of base-pairing interactions
+ between the constituent bases of a RNA sequence.
+ The function of a RNA is largely determined by its secondary structure.
+ Consequently, if two or more RNAs share a similar secondary structure it
+ is likely that they share a similar function.
+ There exist various metrics that allow one to measure similarity between
+ two RNA secondary structures (see 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "moulton2000metrics"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+A typical assumption made in RNA structure studies is that a particular
+ RNA sequence forms a single, well-defined structure, such RNAs are referred
+ to as 
+\emph on
+stable
+\emph default
+ or 
+\emph on
+highly structured
+\emph default
+.
+ However, it is more accurate to think of RNA sequences as able to adopt
+ a range of possible conformations with varying degrees of probability 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "halvorsen2010disease,mathews2004using,bernhart2006partition,waldispuhl2007computing"
+
+\end_inset
+
+.
+ RNAs that have a tendency to adopt a large number of distinct conformations
+ are termed 
+\emph on
+flexible
+\emph default
+.
+ The untranslated regions (UTRs) of many mRNAs are generally considered
+ to be so 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "halvorsen2010disease"
+
+\end_inset
+
+.
+ The probability distribution over all possible structural conformations
+ a particular RNA sequence can form under a given set of conditions is referred
+ to as its 
+\emph on
+ensemble
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The goal of this project is define a set of metrics that allow one to quantify
+ the spread of structural conformations within an ensemble (a measure of
+ flexibility) and measure distances between structural ensembles (as opposed
+ to just the distance between the most probable conformation in each of
+ the two ensembles, as is currently the standard).
+\end_layout
+
+\begin_layout Standard
+These metrics are expected to be applied to real-world data, to test whether
+ associations exist between the measured properties of the RNA ensembles
+ and different functional annotations.
+ For example, ensembles corresponding to mutant sequences which are measured
+ as 
+\begin_inset Quotes eld
+\end_inset
+
+far
+\begin_inset Quotes erd
+\end_inset
+
+ from the wild-type ensemble might be associated with disease more frequently
+ than can be accounted for by chance.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Primary objective:
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $\mathcal{E}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{E}_{2}$
+\end_inset
+
+ denote structural ensembles corresponding to two sequences, 
+\begin_inset Formula $\mathcal{S}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{S}_{2}$
+\end_inset
+
+, folded under conditions 
+\begin_inset Formula $\mathcal{C}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{C}_{2}$
+\end_inset
+
+, respectively.
+ Design two computationally efficient metrics for structural ensembles.The
+ first metric, 
+\begin_inset Formula $\mathbb{V}(\mathcal{E}_{1})$
+\end_inset
+
+, should approximate the within-ensemble variance (partially a proxy of
+ structural flexibility).
+ The second metric, 
+\begin_inset Formula $d(\mathcal{E}_{1},\mathcal{E}_{2})$
+\end_inset
+
+ should approximate distances between ensembles and must have the property
+ that 
+\begin_inset Formula $d(\mathcal{E}_{1},\mathcal{E}_{2})\approx0$
+\end_inset
+
+, when 
+\begin_inset Formula $\mathcal{E}_{1}=\mathcal{E}_{2}$
+\end_inset
+
+.
+ Note that stochastic sampling of secondary structures from ensembles will
+ be used to compute the desired metrics, implying the metrics provide only
+ approximate answers.
+\end_layout
+
+\begin_layout Standard
+Possible tasks:
+\end_layout
+
+\begin_layout Enumerate
+Introduction to computer representations of RNA secondary structure.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Understand the difference between thermodynamic and SCFG approaches to RNA
+ secondary structure prediction.
+\end_layout
+
+\begin_layout Enumerate
+Read 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "moulton2000metrics"
+
+\end_inset
+
+ - describes various metrics for measuring distances between RNA secondary
+ structures (not ensembles!).
+ You should focus on understanding the mountain metric.
+\end_layout
+
+\begin_layout Enumerate
+Read 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "halvorsen2010disease"
+
+\end_inset
+
+ - motivates why structural ensembles are useful to consider.
+\end_layout
+
+\begin_layout Enumerate
+Before computing the desired statistics, i.e.
+ 
+\begin_inset Formula $\mathbb{V}(\mathcal{E}_{1})$
+\end_inset
+
+ and 
+\begin_inset Formula $d(\mathcal{E}_{1},\mathcal{E}_{2})$
+\end_inset
+
+, you need to be able to generate statistically representative samples (RNA
+ secondary structures) from RNA ensembles.
+ There are multiple approaches to sampling (we recommend using the first
+ approach):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use ViennaRNA's RNAsubopt to stochastically draw samples with probability
+ proportional to their Boltzmann weights.
+ Requires programmatically shelling to the RNAsubopt executable.
+ Thermodynamic only.
+ For example, the following command: 
+\family typewriter
+RNAsubopt.exe --stochBT=1000 --temp=37.0 < input_seq.fas > output_sample.txt
+\family default
+, will take as input a sequence, fold it at 37.0C and generate a sample of
+ 1000 secondary structures from the folded ensemble.
+\end_layout
+
+\begin_layout Enumerate
+Implement a MCMC algorithm to sample from either a thermodynamic or SCFG
+ ensemble.
+ Requires designing valid proposadl between RNA secondary structures.
+ Will likely require implementing a parallel tempering algorithm due to
+ the multi-modal nature of RNA ensembles.
+ Has the disadvantage that it will be slow and samples are dependent (auto-corre
+lated).
+\end_layout
+
+\begin_layout Enumerate
+Sample using inside-outside probabilities.
+ For SCFGs only, programmatically difficult, but will generate independent
+ samples.
+ Is the SCFG analogue of RNAsubopt's stochastic traceback.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Plot 
+\begin_inset Formula $\mathbb{V}(\mathcal{E}_{i})$
+\end_inset
+
+ against different values of temperature 
+\begin_inset Formula $T_{i}$
+\end_inset
+
+ for a single sequence.
+ We expect ensemble variance to be positively correlated with temperature.
+\end_layout
+
+\begin_layout Enumerate
+As a test case, compute distances using the ensemble distance metric between
+ a wild-type RNA ensemble and single-nucleotide mutant disease-associated
+ RNA ensembles.
+ Test whether ensemble distance from the wild-type ensemble correlates with
+ disease-association, one way to do this is to randomly generating mutant
+ sequences that all differ from the wild-type by exactly one nucleotide.
+\end_layout
+
+\begin_layout Enumerate
+Benchmark 
+\begin_inset Formula $\mathbb{V}(\mathcal{E}_{1})$
+\end_inset
+
+ against known stable RNA structures and known flexible RNA structures.
+ Flexible structures are expected to have higher 
+\begin_inset Formula $\mathbb{V}(\mathcal{E}_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Perform a PCA analysis in order to visualise secondary structure ensembles
+ in 2D, as in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "halvorsen2010disease"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Generate samples from the wild-type 
+\begin_inset Formula $\mathcal{E}_{w}$
+\end_inset
+
+ and mutant ensembles: 
+\begin_inset Formula $\mathcal{E}_{1},\ldots,\mathcal{E}_{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Compute mountain vectors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "moulton2000metrics"
+
+\end_inset
+
+ for each sample in each ensemble.
+\end_layout
+
+\begin_layout Enumerate
+Perform a seperate PCA analysis for each of the ensembles.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+A comparison of ensembles generated via the two different approaches (thermodyna
+mic vs.
+ SCFGs).
+ Relies on being able to sample from both thermodynamic and SCFG ensembles,
+ as described in 6).
+\end_layout
+
+\begin_layout Standard
+Long-term objectives:
+\end_layout
+
+\begin_layout Enumerate
+Perform a large scale analysis of human RNAs, and test whether flexible
+ structures (as measured using 
+\begin_inset Formula $\mathbb{V}(\mathcal{E}_{1})$
+\end_inset
+
+) are associated with certain functional annotations.
+\end_layout
+
+\begin_layout Enumerate
+Develop a robust and computationally efficient method for pairwise alignment
+ of RNA structural ensembles.
+ This would be particularly valuable, as alignment becomes necessary when
+ comparing two structural ensembles corresponding to two RNA sequences of
+ differing length.
+ This would eventually be expected to be applied on a genome-wide scale
+ (see 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "halvorsen2010disease"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "refs"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
